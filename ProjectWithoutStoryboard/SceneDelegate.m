@@ -6,6 +6,7 @@
 //
 
 #import "SceneDelegate.h"
+#import "ViewController.h"
 
 @interface SceneDelegate ()
 
@@ -14,10 +15,32 @@
 @implementation SceneDelegate
 
 
+// 화면 연결 전
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
 	// Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
 	// If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
 	// This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+	
+	// 윈도우 씬 인스턴스 생성
+	UIWindowScene* windowScene = (UIWindowScene*) scene;
+	
+	// 윈도우의 크기 설정
+	_window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
+	
+	// 뷰컨트롤러 인스턴스 생성
+	ViewController* initialVC = [[ViewController alloc] init];
+	
+	// 네비게이션 컨트롤러 설정
+	UINavigationController* navVC = [[UINavigationController alloc] initWithRootViewController:initialVC];
+	
+	// 루트 뷰컨트롤러 설정
+	_window.rootViewController = navVC;
+	
+	// 화면에 보이게끔 설정
+	[_window makeKeyAndVisible];
+	
+	// 윈도우씬을 설정
+	_window.windowScene = windowScene;
 }
 
 
